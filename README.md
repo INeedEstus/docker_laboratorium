@@ -1,36 +1,33 @@
-# docker_laboratorium
-
-
------------------------------------------------------------------------------------------------------------
-Zadanie 1:
+# Zadanie 1:
+```
 #!/usr/bin/env python3
 
-# Import potrzebnych bibliotek
+# Import potrzebnych bibliotek:
 import http.server
 import socketserver
 import datetime
 import socket
 
-# Pobranie nazwy hosta
+# Pobranie nazwy hosta:
 hostname = socket.gethostname()
 
-# Pobranie adresu IP hosta
+# Pobranie adresu IP hosta:
 ip_address = socket.gethostbyname(hostname)
 
-# Pobranie aktualnej daty i godziny
+# Pobranie aktualnej daty i godziny:
 current_time = datetime.datetime.now()
 
-# Port serwera
+# Port serwera:
 port = 8000
 
-# Zapisanie informacji do logów
+# Zapisanie informacji do logów:
 log_message = f"Autor: Damian Kosidlo\nUruchomiono serwer z adresu IP {ip_address} i portu {port}"
 print(log_message)
 text_file = open("logs.txt",mode='a')
 text_file.write(log_message)
 text_file.close()
 
-# Tworzenie klasy obsługującej żądania HTTP
+# Tworzenie klasy obsługującej żądania HTTP:
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         # Pobranie adresu IP klienta
@@ -44,39 +41,47 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(response_content.encode())
 
-# Uruchomienie serwera na wybranym porcie
+# Uruchomienie serwera na wybranym porcie:
 with socketserver.TCPServer(("", port), MyHttpRequestHandler) as httpd:
     httpd.serve_forever()
------------------------------------------------------------------------------------------------------------
-Zadanie 2:
-# Damian Kosidlo
+```
+# Zadanie 2:
+```# Damian Kosidlo
 FROM python:latest
 COPY main.py /
 CMD [ "python", "./main.py" ]
------------------------------------------------------------------------------------------------------------
-Zadanie 3:
-A. Budowa obrazu kontenera:
+```
+# Zadanie 3:
+## A. Budowa obrazu kontenera:
+```
 sudo docker build -t serwer .
-
-B. Uruchomienie kontenera:
+```
+## B. Uruchomienie kontenera:
+```
 sudo docker run serwer
-
-C. Dostanie się do pliku logs.txt:
+```
+## C. Dostanie się do pliku logs.txt:
+```
 # Sprawdzić nazwę uruchomionego kontenera
 sudo docker ps
 # Dostanie się do plików kontenera
 sudo docker exec -it Nazwa_Kontenera bash
 # Plik z logs.txt znajduję się w głównym folderze, wystarczy tylko odczytać plik
 cat logs.txt
+```
 ![image](https://github.com/INeedEstus/docker_laboratorium/assets/79727495/a19de98c-9ef3-4498-ab8f-8905323bfe8f)
-
-D. Ilość warstw zbudowanego obrazu
+## D. Ilość warstw zbudowanego obrazu:
+```
 sudo docker history -q serwer | wc -l
-
-Jak dostać się do strony:
-# Wyświetlić uruchomionych kontenerów
+```
+# Jak dostać się do strony:
+## Wyświetlić uruchomione kontenery:
+```
 sudo docker ps
-# Wyświetlić adresu IP kontenera
+```
+## Wyświetlić adres IP kontenera:
+```
 sudo docker container inspect ID_Kontenera | grep -i IPAddress
-# Następnie należy wpisać "Adres_IP_Kontenera:Port" w przeglądarce (przypisany kod w porcie to 8000):
+```
+## Na koniec należy wpisać "Adres_IP_Kontenera:Port" w przeglądarce (przypisany kod w porcie to 8000):
 ![image](https://github.com/INeedEstus/docker_laboratorium/assets/79727495/752f7d4d-6626-4064-b908-7f02f35a1a77)
