@@ -75,7 +75,7 @@ cat logs.txt
 sudo docker history -q serwer | wc -l
 ```
 # Ze względu na duże rozmiary obrazów z zadania dodatkowego, zostały one przesłane pod adresem https://drive.google.com/file/d/1YkiCFTzLHU21puhgAdDHSfuHvQBQXN1d/view?usp=sharing
-Użyta komenda: sudo docker buildx build --platform linux/arm/v7,linux/arm64/v8,linux/amd64 -t serwer . --output type=tar,dest=/home/damian/Desktop/sharing/test.tar.gz
+Użyta komenda: sudo docker buildx build --platform linux/arm/v7,linux/arm64/v8,linux/amd64 -t serwer . --output type=oci,dest=docelowy_folder/lab1_serwer.oci
 
 # Jak dostać się do strony:
 ## Wyświetlić uruchomione kontenery:
