@@ -74,7 +74,7 @@ cat logs.txt
 ```
 sudo docker history -q serwer | wc -l
 ```
-# Ze względu na duże rozmiary obrazów, zostały one przesłane pod adresem https://drive.google.com/file/d/1YkiCFTzLHU21puhgAdDHSfuHvQBQXN1d/view?usp=sharing
+# Ze względu na duże rozmiary obrazów z zadania dodatkowego, zostały one przesłane pod adresem https://drive.google.com/file/d/1YkiCFTzLHU21puhgAdDHSfuHvQBQXN1d/view?usp=sharing
 
 # Jak dostać się do strony:
 ## Wyświetlić uruchomione kontenery:
